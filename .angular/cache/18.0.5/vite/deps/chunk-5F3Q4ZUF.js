@@ -1,11 +1,10 @@
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-NB75BKRV.js";
+} from "./chunk-4USASS7I.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,
-  BehaviorSubject,
   CSP_NONCE,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -21,31 +20,16 @@ import {
   LOCALE_ID,
   NgModule,
   NgZone,
-  Observable,
   Optional,
   Output,
   PLATFORM_ID,
-  Subject,
   Version,
   ViewChild,
   ViewEncapsulation$1,
-  __spreadProps,
-  __spreadValues,
   afterNextRender,
   booleanAttribute,
-  combineLatest,
-  concat,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
   inject,
-  map,
-  of,
   setClassMetadata,
-  skip,
-  startWith,
-  take,
-  takeUntil,
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
@@ -76,7 +60,25 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-UPHJ3XBR.js";
+} from "./chunk-D4Z3A4MJ.js";
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  __spreadProps,
+  __spreadValues,
+  combineLatest,
+  concat,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  of,
+  skip,
+  startWith,
+  take,
+  takeUntil
+} from "./chunk-R7GQRDZ6.js";
 
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var hasV8BreakIterator;
@@ -204,6 +206,55 @@ var RtlScrollAxisType;
   RtlScrollAxisType2[RtlScrollAxisType2["NEGATED"] = 1] = "NEGATED";
   RtlScrollAxisType2[RtlScrollAxisType2["INVERTED"] = 2] = "INVERTED";
 })(RtlScrollAxisType || (RtlScrollAxisType = {}));
+var rtlScrollAxisType;
+var scrollBehaviorSupported;
+function supportsScrollBehavior() {
+  if (scrollBehaviorSupported == null) {
+    if (typeof document !== "object" || !document || typeof Element !== "function" || !Element) {
+      scrollBehaviorSupported = false;
+      return scrollBehaviorSupported;
+    }
+    if ("scrollBehavior" in document.documentElement.style) {
+      scrollBehaviorSupported = true;
+    } else {
+      const scrollToFunction = Element.prototype.scrollTo;
+      if (scrollToFunction) {
+        scrollBehaviorSupported = !/\{\s*\[native code\]\s*\}/.test(scrollToFunction.toString());
+      } else {
+        scrollBehaviorSupported = false;
+      }
+    }
+  }
+  return scrollBehaviorSupported;
+}
+function getRtlScrollAxisType() {
+  if (typeof document !== "object" || !document) {
+    return RtlScrollAxisType.NORMAL;
+  }
+  if (rtlScrollAxisType == null) {
+    const scrollContainer = document.createElement("div");
+    const containerStyle = scrollContainer.style;
+    scrollContainer.dir = "rtl";
+    containerStyle.width = "1px";
+    containerStyle.overflow = "auto";
+    containerStyle.visibility = "hidden";
+    containerStyle.pointerEvents = "none";
+    containerStyle.position = "absolute";
+    const content = document.createElement("div");
+    const contentStyle = content.style;
+    contentStyle.width = "2px";
+    contentStyle.height = "1px";
+    scrollContainer.appendChild(content);
+    document.body.appendChild(scrollContainer);
+    rtlScrollAxisType = RtlScrollAxisType.NORMAL;
+    if (scrollContainer.scrollLeft === 0) {
+      scrollContainer.scrollLeft = 1;
+      rtlScrollAxisType = scrollContainer.scrollLeft === 0 ? RtlScrollAxisType.NEGATED : RtlScrollAxisType.INVERTED;
+    }
+    scrollContainer.remove();
+  }
+  return rtlScrollAxisType;
+}
 var shadowDomIsSupported;
 function _supportsShadowDom() {
   if (shadowDomIsSupported == null) {
@@ -258,6 +309,12 @@ function _isNumberValue(value) {
 }
 function coerceArray(value) {
   return Array.isArray(value) ? value : [value];
+}
+function coerceCssPixelValue(value) {
+  if (value == null) {
+    return "";
+  }
+  return typeof value === "string" ? value : `${value}px`;
 }
 function coerceElement(elementOrRef) {
   return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
@@ -518,21 +575,6 @@ var ObserversModule = _ObserversModule;
   }], null, null);
 })();
 
-// node_modules/@angular/cdk/fesm2022/keycodes.mjs
-var ENTER = 13;
-var SHIFT = 16;
-var CONTROL = 17;
-var ALT = 18;
-var SPACE = 32;
-var META = 91;
-var MAC_META = 224;
-function hasModifierKey(event, ...modifiers) {
-  if (modifiers.length) {
-    return modifiers.some((modifier) => event[modifier]);
-  }
-  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
-}
-
 // node_modules/@angular/cdk/fesm2022/layout.mjs
 var _LayoutModule = class _LayoutModule {
 };
@@ -729,6 +771,38 @@ var BreakpointObserver = _BreakpointObserver;
 })();
 function splitQueries(queries) {
   return queries.map((query) => query.split(",")).reduce((a1, a2) => a1.concat(a2)).map((query) => query.trim());
+}
+var Breakpoints = {
+  XSmall: "(max-width: 599.98px)",
+  Small: "(min-width: 600px) and (max-width: 959.98px)",
+  Medium: "(min-width: 960px) and (max-width: 1279.98px)",
+  Large: "(min-width: 1280px) and (max-width: 1919.98px)",
+  XLarge: "(min-width: 1920px)",
+  Handset: "(max-width: 599.98px) and (orientation: portrait), (max-width: 959.98px) and (orientation: landscape)",
+  Tablet: "(min-width: 600px) and (max-width: 839.98px) and (orientation: portrait), (min-width: 960px) and (max-width: 1279.98px) and (orientation: landscape)",
+  Web: "(min-width: 840px) and (orientation: portrait), (min-width: 1280px) and (orientation: landscape)",
+  HandsetPortrait: "(max-width: 599.98px) and (orientation: portrait)",
+  TabletPortrait: "(min-width: 600px) and (max-width: 839.98px) and (orientation: portrait)",
+  WebPortrait: "(min-width: 840px) and (orientation: portrait)",
+  HandsetLandscape: "(max-width: 959.98px) and (orientation: landscape)",
+  TabletLandscape: "(min-width: 960px) and (max-width: 1279.98px) and (orientation: landscape)",
+  WebLandscape: "(min-width: 1280px) and (orientation: landscape)"
+};
+
+// node_modules/@angular/cdk/fesm2022/keycodes.mjs
+var ENTER = 13;
+var SHIFT = 16;
+var CONTROL = 17;
+var ALT = 18;
+var ESCAPE = 27;
+var SPACE = 32;
+var META = 91;
+var MAC_META = 224;
+function hasModifierKey(event, ...modifiers) {
+  if (modifiers.length) {
+    return modifiers.some((modifier) => event[modifier]);
+  }
+  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
 }
 
 // node_modules/@angular/cdk/fesm2022/a11y.mjs
@@ -4558,12 +4632,25 @@ export {
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
+  RtlScrollAxisType,
+  supportsScrollBehavior,
+  getRtlScrollAxisType,
+  _getEventTarget,
+  _isTestEnvironment,
+  ESCAPE,
+  hasModifierKey,
   coerceBooleanProperty,
   coerceNumberProperty,
+  coerceArray,
+  coerceCssPixelValue,
   coerceElement,
   ObserversModule,
+  BreakpointObserver,
+  Breakpoints,
+  LiveAnnouncer,
   FocusMonitor,
   Directionality,
+  BidiModule,
   MatCommonModule,
   _ErrorStateTracker,
   ErrorStateMatcher,
@@ -4572,4 +4659,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-YQ2456MH.js.map
+//# sourceMappingURL=chunk-5F3Q4ZUF.js.map

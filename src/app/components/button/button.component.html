@@ -1,6 +1,7 @@
 <button 
 mat-button 
 [disabled]="buttonDisabled"
+type="submit"
 [ngClass]="{ 'primary-button': buttonClassIsPrimary, 'secondary-button': !buttonClassIsPrimary }" 
 (click)="onClick()">
 {{buttonText | titlecase}}

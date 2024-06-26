@@ -5,32 +5,32 @@
                 <app-logo [largeImage]="true"></app-logo>
             </div>
 
-            <form [formGroup]="formulario" (ngSubmit)="submitFormulario()">
+            <form [formGroup]="formulario">
                 <mat-form-field ngClass="formFieldInput" appearance="outline">
                     <mat-label>Email ou Login</mat-label>
-                    <input [style.color]="'#A8A8A8'" matInput formControlName="email">
+                    <input [style.color]="'#A8A8A8'" matInput formControlName="username">
                     <mat-error
-                        *ngIf="getCampo('email').invalid && (getCampo('email').dirty || getCampo('email').touched)">
-                        Email inválido
+                        *ngIf="getCampo('username').invalid && (getCampo('username').dirty || getCampo('username').touched)">
+                        Email é obrigatório
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field ngClass="formFieldInput" appearance="outline">
                     <mat-label>Senha</mat-label>
-                    <input [style.color]="'#A8A8A8'" ngClass="formInput" matInput formControlName="senha" type="password">
+                    <input [style.color]="'#A8A8A8'" ngClass="formInput" matInput formControlName="password" type="password">
                     <mat-error
-                        *ngIf="getCampo('senha').invalid && (getCampo('senha').dirty || getCampo('senha').touched)">
+                        *ngIf="getCampo('password').invalid && (getCampo('password').dirty || getCampo('password').touched)">
                         Senha é obrigatória
                     </mat-error>
                 </mat-form-field>
-                <mat-checkbox color="accent" formControlName="concorda">
+                <mat-checkbox color="accent" formControlName="agree">
                     <span [style.color]="'#A8A8A8'">Lembrar minha senha</span>
                 </mat-checkbox>
             </form>
 
             <div ngClass="button-container">
                 <app-button [buttonClassIsPrimary]="false" [buttonText]="'criar conta'" [buttonText]="'criar conta'"
-                    (buttonClick)="handleRegister()"></app-button>
-                <app-button [buttonClassIsPrimary]="true" [buttonText]="'acessar'"
+                    (buttonClick)="goToRegister()"></app-button>
+                <app-button [buttonClassIsPrimary]="true" [buttonText]="'acessar'" [buttonDisabled]="formulario.invalid"
                     (buttonClick)="handleLogin()"></app-button>
             </div>
         </mat-card-content>

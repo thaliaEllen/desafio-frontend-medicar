@@ -1,1 +1,57 @@
-<p>register works!</p>
+<div ngClass="container">
+    <mat-card class="card" appearance="raised">
+        <mat-card-content>
+            <div>
+                <app-logo [largeImage]="true"></app-logo>
+            </div>
+            <div [style.margin-bottom.px]="12" [style.font-weight]="'bold'" [style.color]="'#444444'" [style.font-size.px]="16">
+                <span >Crie sua conta</span>
+            </div>
+            <form [formGroup]="formulario">
+                <mat-form-field ngClass="formFieldInput" appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input [style.color]="'#A8A8A8'" matInput formControlName="username">
+                    <mat-error
+                        *ngIf="getCampo('username').invalid && (getCampo('username').dirty || getCampo('username').touched)">
+                        Nome obrigatório
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field ngClass="formFieldInput" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input [style.color]="'#A8A8A8'" matInput formControlName="email">
+                    <mat-error
+                        *ngIf="getCampo('email').invalid && (getCampo('email').dirty || getCampo('email').touched)">
+                        Email obrigatório
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field ngClass="formFieldInput" appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error *ngIf="getCampo('password').invalid && (getCampo('password').dirty || getCampo('password').touched)">
+                      Senha é obrigatória
+                    </mat-error>
+                  </mat-form-field>
+                
+                  <mat-form-field ngClass="formFieldInput" appearance="outline">
+                    <mat-label>Confirmar Senha</mat-label>
+                    <input matInput type="password" formControlName="secondPassword">
+                    <mat-error *ngIf="getCampo('secondPassword').hasError('required') && (getCampo('secondPassword').dirty || getCampo('secondPassword').touched)">
+                      Confirmação de senha é obrigatória.
+                    </mat-error>
+                    <mat-error *ngIf="getCampo('secondPassword').hasError('senhasDiferentes') && (getCampo('secondPassword').dirty || getCampo('secondPassword').touched)">
+                      As senhas não coincidem.
+                    </mat-error>
+                  </mat-form-field>
+            </form>
+
+            <div ngClass="button-container">
+                <app-button [buttonClassIsPrimary]="false" [buttonText]="'cancelar'"
+                    (buttonClick)="handleBackLogin()"></app-button>
+                <app-button [buttonClassIsPrimary]="true" [buttonText]="'confirmar'" [buttonDisabled]="formulario.invalid"
+                    (buttonClick)="handleLogin()"></app-button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
