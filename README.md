@@ -12,8 +12,8 @@ Autor: Thalia Ellen ( [linkedin](https://linkedin.com/in/thalia-ellen-6314a4120)
 
 ## Sobre a api utilizada
 A API utilizada para este desafio foi desenvolvida a partir da api fornecida pela contratante. Foram acrecentadas apenas algumas funções.
-Versão original da api do contratante: [api de teste medicar original](https://github.com/Intmed-Software/desafio-mock-server).
-Link da api utilizada no desafio: ([clique aqui](https://github.com/thaliaEllen/desafio-mock-server-main-back-medicar))
+Api utilizada no desafio: ([clique aqui](https://github.com/thaliaEllen/desafio-mock-server-main-back-medicar))
+Versão original da api do contratante: [api da contratante](https://github.com/Intmed-Software/desafio-mock-server).
 
 Obs: alguns dados encontram-se mocados e fixos.
 
