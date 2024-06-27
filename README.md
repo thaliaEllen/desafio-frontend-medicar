@@ -36,7 +36,7 @@ export const environment = {
 };
 ```
 
-Agora, redirecione para a pasta backend onde se encontra a api e execute o seguinte comando para a instalação de suas dependências:
+Agora em outro prompt de comando, redirecione para a pasta backend onde se encontra a api e execute o seguinte comando para a instalação de suas dependências:
 ```sh
 npm install
 ```
