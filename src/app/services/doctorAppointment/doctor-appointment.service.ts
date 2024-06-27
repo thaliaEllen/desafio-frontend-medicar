@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable, map } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
-import { DoctorAppointment } from '../../interfaces/doctorAppointment/doctorAppointment';
+import { Doctor, DoctorAgenda, DoctorAppointment, Specialty } from '../../interfaces/doctorAppointment/doctorAppointment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class DoctorAppointmentService {
 
   constructor(private httpClient: HttpClient, private localStorageData: LocalStorageService) { }
 
-  getDataWithToken(): Observable<any> {
+  getListDoctorAppointment(): Observable<any> {
 
     const headers = new HttpHeaders({
       'Authorization': `Token ${this.localStorageData.getToken()}`
@@ -26,7 +26,48 @@ export class DoctorAppointmentService {
     );
   }
 
-  deleteDataWithToken(id: number): Observable<any> {
+  getListSpeciality(): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${this.localStorageData.getToken()}`
+    });
+    
+    return this.httpClient.get<Specialty[]>(`${this.url}/especialidades`, { headers: headers });
+  }
+
+  getListDoctorBySpeciality(idSpeciality: number): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${this.localStorageData.getToken()}`
+    });
+    
+    return this.httpClient.get<Doctor[]>(`${this.url}/medicos/especialidade/${idSpeciality}`, { headers: headers });
+  }
+
+  getListDoctorAppointmentByDoctorId(idDoctor: number): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${this.localStorageData.getToken()}`
+    });
+    
+    return this.httpClient.get<DoctorAgenda[]>(`${this.url}/agendas/medico/${idDoctor}`, { headers: headers });
+  }
+
+  registerDoctorAppointment(id: number, hour: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${this.localStorageData.getToken()}`
+    });
+
+    const body = {
+      agenda_id: id,
+      horario: hour
+    };
+    
+    return this.httpClient.post<void>(`${this.url}/consultas/`, body, { headers: headers });
+  }
+
+  deleteDoctorAppointment(id: number): Observable<any> {
 
     const headers = new HttpHeaders({
       'Authorization': `Token ${this.localStorageData.getToken()}`

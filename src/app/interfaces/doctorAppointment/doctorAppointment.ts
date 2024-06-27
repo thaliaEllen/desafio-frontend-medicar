@@ -14,6 +14,13 @@ export interface DoctorAppointment {
     medico: Doctor
 };
 
+export interface DoctorAgenda {
+    id: number
+    dia: string
+    horarios: string[]
+    medico: Doctor
+};
+
 export interface Doctor {
     id: number
     crm: number

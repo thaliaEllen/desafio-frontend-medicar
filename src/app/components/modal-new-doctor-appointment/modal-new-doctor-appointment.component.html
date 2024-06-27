@@ -1,10 +1,40 @@
 <div class="containerDialod">
     <span mat-dialog-title [style.color]="'#444444'" [style.font-weight]="'500'">Nova Consulta</span>
     <mat-dialog-content>
-        <p>What's your favorite animal?</p>
+        <div>
+        <mat-form-field ngClass="formSelect">
+            <mat-label>Especialidade</mat-label>
+            <mat-select [(value)]="selectSpecialityId" (selectionChange)="onChangeSpeciality()">
+                <mat-option *ngFor="let speciality of listSpecialisty" [value]="speciality.id">{{speciality.nome}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field ngClass="formSelect">
+            <mat-label>Médico</mat-label>
+            <mat-select [disabled]="selectSpecialityId === 0" [(value)]="selectDoctorId" (selectionChange)="onChangeDoctor()">
+                <mat-option *ngFor="let doctor of listDoctor" [value]="doctor.id">{{doctor.nome}}</mat-option>
+                <mat-option *ngIf="listDoctor.length === 0">Nenhum médico disponível</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field ngClass="formSelect">
+            <mat-label>Data</mat-label>
+            <mat-select [disabled]="selectDoctorId === 0" [(value)]="selectAgendaDoctorId" (selectionChange)="onChangeDataAgenda()">
+                <mat-option *ngFor="let agenda of listAgendaDoctor" [value]="agenda.id">{{agenda.dia | date: 'dd/MM/yyyy'}}</mat-option>
+                <mat-option *ngIf="listAgendaDoctor.length === 0">Nenhuma data disponível</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field ngClass="formSelect">
+            <mat-label>Hora</mat-label>
+            <mat-select [disabled]="selectAgendaDoctorId === 0" [(value)]="selectAgendaHoursDoctor">
+                <mat-option *ngFor="let agendaHour of listAgendaHoursDoctor" [value]="agendaHour">{{agendaHour}}</mat-option>
+                <mat-option *ngIf="listAgendaHoursDoctor.length === 0">Nenhum horário disponível</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div ngClass="button-container">
+        <app-button [buttonClassIsPrimary]="false" [buttonText]="'cancelar'"
+            (buttonClick)="onNoClick()"></app-button>
+        <app-button [buttonClassIsPrimary]="true" [buttonText]="'confirmar'" [buttonDisabled]="invalidForm()"
+            (buttonClick)="handleLogin()"></app-button>
+    </div>
     </mat-dialog-content>
-    <mat-dialog-actions>
-        <button mat-button (click)="executeParentFunction()">Executar Função do Pai</button>
-        <button mat-button (click)="onNoClick()">Fechar</button>
-    </mat-dialog-actions>
 </div>

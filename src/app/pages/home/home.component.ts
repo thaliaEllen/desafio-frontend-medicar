@@ -36,7 +36,7 @@ export class HomeComponent {
 
 
   loadDoctorAppointment() {
-    this.doctorAppointment.getDataWithToken().pipe(
+    this.doctorAppointment.getListDoctorAppointment().pipe(
       catchError(error => {
         const mensagemErro = 'Erro ao carregar lista. Recarregue a página.';
         const acao = 'Fechar'; 
@@ -50,7 +50,7 @@ export class HomeComponent {
   }
 
   handleDeleteDoctorAppointment(id: number) {
-    this.doctorAppointment.deleteDataWithToken(id).pipe(
+    this.doctorAppointment.deleteDoctorAppointment(id).pipe(
       catchError(error => {
         const mensagemErro = 'Erro ao desmarcar consulta. Tente novamente.';
         const acao = 'Fechar'; 
@@ -60,7 +60,7 @@ export class HomeComponent {
       })
     )
       .subscribe(
-        (response) => {
+        () => {
           const mensagemErro = '✅ Consulta desmarcada com sucesso!';
           const acao = 'Fechar'; 
   
@@ -90,8 +90,7 @@ export class HomeComponent {
   }
 
   executeInParent() {
-    console.log('Função executada no componente pai!');
-    // Coloque aqui a lógica que deseja executar no pai
+    this.loadDoctorAppointment();
   }
 
 }

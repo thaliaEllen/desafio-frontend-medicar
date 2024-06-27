@@ -10,27 +10,37 @@ export class LocalStorageService {
   constructor() { }
 
   saveTokenAndUsername(token: string, username: string): void {
-    localStorage.setItem(this.MEDICAR_DATA,JSON.stringify({
-      token: token,
-      name: username
-    }));
+    if (typeof localStorage !== 'undefined') {
+      const valor = localStorage.getItem('chave');
+
+      localStorage.setItem(this.MEDICAR_DATA, JSON.stringify({
+        token: token,
+        name: username
+      }));
+    }
   }
 
   isLoggedIn(): boolean {
-    const token = JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string);
+    let token = false;
+    if (typeof localStorage !== 'undefined') {
+      token = JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string);
+    }
     return !token ? false : true;
   }
 
   getToken(): string | null {
-    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).token;
+    return typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).token : null;
   }
 
   getUsername(): string | null {
 
-    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).name;
+    return typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).name : null;
   }
 
   clearLocalStorage(): void {
-    localStorage.removeItem(this.MEDICAR_DATA);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(this.MEDICAR_DATA);
+    }
   }
+
 }

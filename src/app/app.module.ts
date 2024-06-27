@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ModalNewDoctorAppointmentComponent } from './components/modal-new-doctor-appointment/modal-new-doctor-appointment.component';
@@ -52,7 +53,8 @@ import { AuthGuardsService } from './routes/guards/auth-guards.service';
     HttpClientModule,
     MatTableModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule
   ],
   providers: [
     provideClientHydration(),
