@@ -11,7 +11,6 @@ export class LocalStorageService {
 
   saveTokenAndUsername(token: string, username: string): void {
     if (typeof localStorage !== 'undefined') {
-      const valor = localStorage.getItem('chave');
 
       localStorage.setItem(this.MEDICAR_DATA, JSON.stringify({
         token: token,
