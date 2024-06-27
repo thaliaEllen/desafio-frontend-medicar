@@ -20,8 +20,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './components/logo/logo.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ModalNewDoctorAppointmentComponent } from './components/modal-new-doctor-appointment/modal-new-doctor-appointment.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomeComponent,
     ButtonComponent,
     LogoComponent,
-    TableHomeComponent
+    TableHomeComponent,
+    ModalNewDoctorAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatCheckboxModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatToolbarModule
   ],
   providers: [
     provideClientHydration(),

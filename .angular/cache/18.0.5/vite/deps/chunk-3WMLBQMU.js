@@ -297,6 +297,22 @@ function _isTestEnvironment() {
   );
 }
 
+// node_modules/@angular/cdk/fesm2022/keycodes.mjs
+var ENTER = 13;
+var SHIFT = 16;
+var CONTROL = 17;
+var ALT = 18;
+var ESCAPE = 27;
+var SPACE = 32;
+var META = 91;
+var MAC_META = 224;
+function hasModifierKey(event, ...modifiers) {
+  if (modifiers.length) {
+    return modifiers.some((modifier) => event[modifier]);
+  }
+  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
+}
+
 // node_modules/@angular/cdk/fesm2022/coercion.mjs
 function coerceBooleanProperty(value) {
   return value != null && `${value}` !== "false";
@@ -788,22 +804,6 @@ var Breakpoints = {
   TabletLandscape: "(min-width: 960px) and (max-width: 1279.98px) and (orientation: landscape)",
   WebLandscape: "(min-width: 1280px) and (orientation: landscape)"
 };
-
-// node_modules/@angular/cdk/fesm2022/keycodes.mjs
-var ENTER = 13;
-var SHIFT = 16;
-var CONTROL = 17;
-var ALT = 18;
-var ESCAPE = 27;
-var SPACE = 32;
-var META = 91;
-var MAC_META = 224;
-function hasModifierKey(event, ...modifiers) {
-  if (modifiers.length) {
-    return modifiers.some((modifier) => event[modifier]);
-  }
-  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
-}
 
 // node_modules/@angular/cdk/fesm2022/a11y.mjs
 var ID_DELIMITER = " ";
@@ -4635,6 +4635,7 @@ export {
   RtlScrollAxisType,
   supportsScrollBehavior,
   getRtlScrollAxisType,
+  _getFocusedElementPierceShadowDom,
   _getEventTarget,
   _isTestEnvironment,
   ESCAPE,
@@ -4648,8 +4649,11 @@ export {
   ObserversModule,
   BreakpointObserver,
   Breakpoints,
+  InteractivityChecker,
+  FocusTrapFactory,
   LiveAnnouncer,
   FocusMonitor,
+  A11yModule,
   Directionality,
   BidiModule,
   MatCommonModule,
@@ -4660,4 +4664,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-5HO35JEW.js.map
+//# sourceMappingURL=chunk-3WMLBQMU.js.map

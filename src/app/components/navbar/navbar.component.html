@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+
+<mat-toolbar class="mat-elevation-z0">
+    <app-logo></app-logo>
+    
+    <span class="spacer"></span>
+    
+    <div class="user-info">
+      <span>{{ username | titlecase}}</span>
+      <span class="logout" (click)="logout()">Desconectar</span>
+  
+    </div>
+  </mat-toolbar>
+  

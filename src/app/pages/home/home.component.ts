@@ -4,6 +4,8 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { DoctorAppointmentService } from '../../services/doctorAppointment/doctor-appointment.service';
 import { catchError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalNewDoctorAppointmentComponent } from '../../components/modal-new-doctor-appointment/modal-new-doctor-appointment.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ export class HomeComponent {
   username: string;
   dataAppointmens: any[] = [];
 
-  constructor(private formBuilder: FormBuilder, localStorageData: LocalStorageService, private doctorAppointment: DoctorAppointmentService, private _snackBar: MatSnackBar) {
+  constructor(private dialog: MatDialog, private formBuilder: FormBuilder, localStorageData: LocalStorageService, private doctorAppointment: DoctorAppointmentService, private _snackBar: MatSnackBar) {
     this.formulario = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required],
@@ -73,6 +75,23 @@ export class HomeComponent {
     this._snackBar.open(mensagem, acao, {
       duration: 3000,
     });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalNewDoctorAppointmentComponent, {
+      data: {
+        executeFunction: () => this.executeInParent()
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Diálogo fechado');
+    });
+  }
+
+  executeInParent() {
+    console.log('Função executada no componente pai!');
+    // Coloque aqui a lógica que deseja executar no pai
   }
 
 }

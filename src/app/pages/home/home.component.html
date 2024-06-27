@@ -1,16 +1,23 @@
 <div ngClass="container">
-    <mat-card class="card" appearance="raised">
+    <mat-card class="cardContainer">
         <mat-card-content>
-            <div class="cabecalho">
-                <p class="titulo">Consulta clínica</p>
-                <button mat-button type="submit" ngClass="newQueryButton">
-                    <mat-icon>add</mat-icon>
-                    {{"Nova consulta" | titlecase}}
-                </button>
-            </div>
-            <div class="tabelaPrincipal">
-                <app-table-home [dataList]="dataAppointmens" (buttonClick)="handleDeleteDoctorAppointment($event)"></app-table-home>
-            </div>
+            <app-navbar></app-navbar>
+            <mat-card class="card" appearance="raised">
+                <mat-card-content>
+                    <div class="cabecalho">
+                        <p class="titulo">Consulta Clínica</p>
+                        <button mat-button (click)="openDialog()" ngClass="newQueryButton">
+                            <mat-icon>add</mat-icon>
+                            {{"Nova consulta" | titlecase}}
+                        </button>
+                    </div>
+                    <div class="tabelaPrincipal">
+                        <app-table-home [dataList]="dataAppointmens"
+                            (buttonClick)="handleDeleteDoctorAppointment($event)"></app-table-home>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
         </mat-card-content>
     </mat-card>
 </div>
