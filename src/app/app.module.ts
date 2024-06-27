@@ -25,6 +25,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ModalNewDoctorAppointmentComponent } from './components/modal-new-doctor-appointment/modal-new-doctor-appointment.component';
+import { AuthGuardsService } from './routes/guards/auth-guards.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ModalNewDoctorAppointmentComponent } from './components/modal-new-docto
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    AuthGuardsService
   ],
   bootstrap: [AppComponent]
 })

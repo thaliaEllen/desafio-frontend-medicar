@@ -16,8 +16,13 @@ export class LocalStorageService {
     }));
   }
 
+  isLoggedIn(): boolean {
+    const token = JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string);
+    return !token ? false : true;
+  }
+
   getToken(): string | null {
-    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).token;;
+    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).token;
   }
 
   getUsername(): string | null {
