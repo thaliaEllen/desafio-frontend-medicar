@@ -18,7 +18,7 @@ A API utilizada para este desafio foi desenvolvida a partir da api fornecida pel
 Obs: alguns dados encontram-se mocados e fixos.
 
 
-## Instalação do frontend e da api
+## Instalação do frontend
 
 Após o download deste repositório, execute o seguinte comando para a instalação de suas dependências:
 
@@ -37,15 +37,7 @@ export const environment = {
 };
 ```
 
-Efetue o download do repositório da api no link disponibilizado na sessão anterior e execute o seguinte comando para a instalação de suas dependências:
-```sh
-npm install
-```
-Ainda no repositório da api execute o comando para iniciá-lo:
-```sh
-npm start
-``` 
-Por fim, no repositório do frontend execute o comando também para iniciá-lo:
+Por fim, execute o seguinte comando para iniciá-lo:
 ```sh
 npm start
 ``` 
