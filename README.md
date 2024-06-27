@@ -26,7 +26,7 @@ password: challenge
 ```
 - Este usuário também será retornado por padrão ao efetuar um cadastro.
 
-- No cadastro de consultas a api também realiza um cadastro padrão. Como na api original se encontrava desta forma, preferi não alterar. Mas todos os dados selecionados no frontend chegam na api no formato em que o usuário está selecionando na tela, eles apenas não são tratados no back, assim como na api original. Assim como no cadastro de usuários.
+- No cadastro de consultas a api também realiza um cadastro padrão. Como na api original se encontrava desta forma, preferi não alterar. Mas todos os dados selecionados no frontend chegam na api no formato em que o usuário está selecionando na tela, eles apenas não são tratados no back, assim como na api original.
 
 ## Instalação do frontend e da api
 
