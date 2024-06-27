@@ -1,0 +1,34 @@
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    margin-top: 0.1rem;
+  }
+  
+  .cor-alternada {
+    background-color: #f0f0f0;  // Cor de fundo alternada para células
+  }
+
+  .label-colorida {
+    color: #ff0000;  // Cor das labels do cabeçalho da tabela (vermelho neste exemplo)
+    font-weight: bold;  // Fonte em negrito (opcional)
+    background-color: #f0f0f0;  // Cor de fundo das labels do cabeçalho da tabela (opcional)
+    border: none;  // Remove a borda (opcional)
+    padding: 8px;  // Adiciona espaçamento interno às células do cabeçalho (opcional)
+  }
+
+  .buttonMarkOff {
+    display: inline-block;
+    border-radius: 5px; 
+    background-color: transparent; 
+    color: #49B4BB !important; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #D9F1F3; 
+      color: #49B4BB;
+    }
+  }
+  

@@ -4641,6 +4641,7 @@ export {
   hasModifierKey,
   coerceBooleanProperty,
   coerceNumberProperty,
+  _isNumberValue,
   coerceArray,
   coerceCssPixelValue,
   coerceElement,
@@ -4659,4 +4660,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-5F3Q4ZUF.js.map
+//# sourceMappingURL=chunk-5HO35JEW.js.map

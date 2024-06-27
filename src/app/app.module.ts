@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { TableHomeComponent } from './components/table-home/table-home.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +19,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './components/logo/logo.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
+
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     HomeComponent,
     ButtonComponent,
-    LogoComponent
+    LogoComponent,
+    TableHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [
     provideClientHydration(),

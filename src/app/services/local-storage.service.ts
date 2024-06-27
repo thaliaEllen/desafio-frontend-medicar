@@ -5,26 +5,27 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
-  private TOKEN_KEY = '';
-  private USERNAME_KEY = '';
+  private MEDICAR_DATA = 'MEDICAR_DATA';
 
   constructor() { }
 
   saveTokenAndUsername(token: string, username: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
-    localStorage.setItem(this.USERNAME_KEY, username);
+    localStorage.setItem(this.MEDICAR_DATA,JSON.stringify({
+      token: token,
+      name: username
+    }));
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).token;;
   }
 
   getUsername(): string | null {
-    return localStorage.getItem(this.USERNAME_KEY);
+
+    return JSON.parse(localStorage.getItem(this.MEDICAR_DATA) as string).name;
   }
 
   clearLocalStorage(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USERNAME_KEY);
+    localStorage.removeItem(this.MEDICAR_DATA);
   }
 }

@@ -57,7 +57,7 @@ export class RegisterComponent {
     )
       .subscribe(
         () => {
-          const mensagemErro = 'Cadastro efetuado com sucesso!';
+          const mensagemErro = '✅ Cadastro efetuado com sucesso!';
           const acao = 'Fechar'; 
   
           this.openSnackBar(mensagemErro, acao);
