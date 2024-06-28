@@ -17,8 +17,8 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService, private _snackBar: MatSnackBar, private localStorage: LocalStorageService ) {
     this.formulario = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', Validators.required],
+      username: [this.localStorage.getUserLoginData('username'), [Validators.required]],
+      password: [this.localStorage.getUserLoginData('password'), Validators.required],
       agree: [false],
     });
   }
@@ -43,6 +43,9 @@ export class LoginComponent {
       .subscribe(
         (response) => {
           this.localStorage.saveTokenAndUsername(response.token, formData.username);
+          if(formData.agree){
+          this.localStorage.saveLogin(formData.password, formData.username);
+          }
           this.router.navigate(['/home']);
         }
       );
